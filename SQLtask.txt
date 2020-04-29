@@ -1,0 +1,371 @@
+1.
+select count(*) from city where countrycode='usa'; = 274
+
+
+
+2.
+| population | lifeexpectancy |
++------------+----------------+
+|   37032000 |           75.1 |
++------------+----------------+
+1 row in set (0.01 sec)
+mysql> select population, lifeexpectancy from country where code='arg';
+
+
+
+
+3.
++------+------------+----------------+
+| code | name       | lifeexpectancy |
++------+------------+----------------+
+| AND  | Andorra    |           83.5 |
+| MAC  | Macao      |           81.6 |
+| SMR  | San Marino |           81.1 |
++------+------------+----------------+
+3 rows in set (0.00 sec)
+mysql> select code,name,lifeexpectancy from country where lifeexpectancy is not null order by lifeexpectancy desc limit 3; =83.5
+
+
+4.
+| name   | name  |
++--------+-------+
+| Madrid | Spain |
++--------+-------+
+1 row in set (0.01 sec)
+mysql> select city.name, country.name from city left join country on city.countrycode =country.code where countrycode='esp' limit 1;
+
+
+| Southeast Asia | Myanmar     | Chin          |
+| Southeast Asia | Myanmar     | Kachin        |
+| Southeast Asia | Myanmar     | Karen         |
+| Southeast Asia | Myanmar     | Kayah         |
+| Southeast Asia | Myanmar     | Mon           |
+| Southeast Asia | Myanmar     | Rakhine       |
+| Southeast Asia | Myanmar     | Shan          |
+| Southeast Asia | Malaysia    | Chinese       |
+| Southeast Asia | Malaysia    | Dusun         |
+| Southeast Asia | Malaysia    | English       |
+| Southeast Asia | Malaysia    | Iban          |
+| Southeast Asia | Malaysia    | Malay         |
+| Southeast Asia | Malaysia    | Tamil         |
+| Southeast Asia | Philippines | Bicol         |
+| Southeast Asia | Philippines | Cebuano       |
+| Southeast Asia | Philippines | Hiligaynon    |
+| Southeast Asia | Philippines | Ilocano       |
+| Southeast Asia | Philippines | Maguindanao   |
+| Southeast Asia | Philippines | Maranao       |
+| Southeast Asia | Philippines | Pampango      |
+| Southeast Asia | Philippines | Pangasinan    |
+| Southeast Asia | Philippines | Pilipino      |
+| Southeast Asia | Philippines | Waray-waray   |
+| Southeast Asia | Singapore   | Chinese       |
+| Southeast Asia | Singapore   | Malay         |
+| Southeast Asia | Singapore   | Tamil         |
+| Southeast Asia | Thailand    | Chinese       |
+| Southeast Asia | Thailand    | Khmer         |
+| Southeast Asia | Thailand    | Kuy           |
+| Southeast Asia | Thailand    | Lao           |
+| Southeast Asia | Thailand    | Malay         |
+| Southeast Asia | Thailand    | Thai          |
+| Southeast Asia | East Timor  | Portuguese    |
+| Southeast Asia | East Timor  | Sunda         |
+| Southeast Asia | Vietnam     | Chinese       |
+| Southeast Asia | Vietnam     | Khmer         |
+| Southeast Asia | Vietnam     | Man           |
+| Southeast Asia | Vietnam     | Miao          |
+| Southeast Asia | Vietnam     | Muong         |
+| Southeast Asia | Vietnam     | Nung          |
+| Southeast Asia | Vietnam     | Thai          |
+| Southeast Asia | Vietnam     | Tho           |
+| Southeast Asia | Vietnam     | Vietnamese    |
++----------------+-------------+---------------+
+65 rows in set (0.01 sec)
+
+mysql> select distinct c.region, c.name, cl.language from country c left join countrylanguage cl on c.code = cl.countrycode where region ='southeast asia';
+
+
+
+6.
++---------------------------+
+| name                      |
++---------------------------+
+| Fagatogo                  |
+| Florencio Varela          |
+| Formosa                   |
+| Francistown               |
+| Fortaleza                 |
+| Feira de Santana          |
+| Franca                    |
+| Florianópolis             |
+| Foz do Iguaçu             |
+| Ferraz de Vasconcelos     |
+| Francisco Morato          |
+| Franco da Rocha           |
+| Fuenlabrada               |
+| Faridabad                 |
+| Firozabad                 |
+| Farrukhabad-cum-Fatehgarh |
+| Faizabad                  |
+| Fatehpur                  |
+| Firenze                   |
+| Foggia                    |
+| Ferrara                   |
+| Forlì                     |
+| Fukuoka                   |
+| Funabashi                 |
+| Fukuyama                  |
++---------------------------+
+25 rows in set (0.01 sec)
+mysql> select name from city where name like 'f%' limit 25;
+
+
+7.
+| count(name) |
++-------------+
+|         363 |
++-------------+
+1 row in set (0.01 sec)
+mysql> select distinct  count(name) from city where countrycode ='chn';
+
+
+
+8.
+| name                                         | population |
++----------------------------------------------+------------+
+| South Georgia and the South Sandwich Islands |          0 |
+| French Southern territories                  |          0 |
+| Bouvet Island                                |          0 |
+| British Indian Ocean Territory               |          0 |
+| Antarctica                                   |          0 |
+| United States Minor Outlying Islands         |          0 |
+| Heard Island and McDonald Islands            |          0 |
+| Pitcairn                                     |         50 |
+| Cocos (Keeling) Islands                      |        600 |
+| Holy See (Vatican City State)                |       1000 |
++----------------------------------------------+------------+
+10 rows in set (0.01 sec)
+
+mysql> select name, population from country where population is not null order by population asc limit 10;
+
+
+
+9.
++-------------+
+| count(name) |
++-------------+
+|         239 |
++-------------+
+1 row in set (0.01 sec)
+mysql> select count(name) from country;
+
+10.
+| name               | population |
++--------------------+------------+
+| China              | 1277558000 |
+| India              | 1013662000 |
+| United States      |  278357000 |
+| Indonesia          |  212107000 |
+| Brazil             |  170115000 |
+| Pakistan           |  156483000 |
+| Russian Federation |  146934000 |
+| Bangladesh         |  129155000 |
+| Japan              |  126714000 |
+| Nigeria            |  111506000 |
++--------------------+------------+
+10 rows in set (0.01 sec)
+mysql> select name, population from country where population is not null order by population desc limit 10;
+
+
+11.
++---------------------+------------+-------------+
+| name                | population | countrycode |
++---------------------+------------+-------------+
+| Tokyo               |    7980230 | JPN         |
+| Jokohama [Yokohama] |    3339594 | JPN         |
+| Osaka               |    2595674 | JPN         |
+| Nagoya              |    2154376 | JPN         |
+| Sapporo             |    1790886 | JPN         |
++---------------------+------------+-------------+
+5 rows in set (0.01 sec)
+mysql> select name, population, countrycode  from city where countrycode='jpn' order by population desc limit 5;
+
+
+
+12.
+| name                                         | headofstate  | code |
++----------------------------------------------+--------------+------+
+| Anguilla                                     | Elisabeth II | AIA  |
+| Antigua and Barbuda                          | Elisabeth II | ATG  |
+| Australia                                    | Elisabeth II | AUS  |
+| Bahamas                                      | Elisabeth II | BHS  |
+| Belize                                       | Elisabeth II | BLZ  |
+| Bermuda                                      | Elisabeth II | BMU  |
+| Barbados                                     | Elisabeth II | BRB  |
+| Canada                                       | Elisabeth II | CAN  |
+| Cocos (Keeling) Islands                      | Elisabeth II | CCK  |
+| Cook Islands                                 | Elisabeth II | COK  |
+| Christmas Island                             | Elisabeth II | CXR  |
+| Cayman Islands                               | Elisabeth II | CYM  |
+| Falkland Islands                             | Elisabeth II | FLK  |
+| United Kingdom                               | Elisabeth II | GBR  |
+| Gibraltar                                    | Elisabeth II | GIB  |
+| Grenada                                      | Elisabeth II | GRD  |
+| Heard Island and McDonald Islands            | Elisabeth II | HMD  |
+| British Indian Ocean Territory               | Elisabeth II | IOT  |
+| Jamaica                                      | Elisabeth II | JAM  |
+| Saint Kitts and Nevis                        | Elisabeth II | KNA  |
+| Saint Lucia                                  | Elisabeth II | LCA  |
+| Montserrat                                   | Elisabeth II | MSR  |
+| Norfolk Island                               | Elisabeth II | NFK  |
+| Niue                                         | Elisabeth II | NIU  |
+| New Zealand                                  | Elisabeth II | NZL  |
+| Pitcairn                                     | Elisabeth II | PCN  |
+| Papua New Guinea                             | Elisabeth II | PNG  |
+| South Georgia and the South Sandwich Islands | Elisabeth II | SGS  |
+| Saint Helena                                 | Elisabeth II | SHN  |
+| Solomon Islands                              | Elisabeth II | SLB  |
+| Turks and Caicos Islands                     | Elisabeth II | TCA  |
+| Tokelau                                      | Elisabeth II | TKL  |
+| Tuvalu                                       | Elisabeth II | TUV  |
+| Saint Vincent and the Grenadines             | Elisabeth II | VCT  |
+| Virgin Islands, British                      | Elisabeth II | VGB  |
++----------------------------------------------+--------------+------+
+35 rows in set (0.01 sec)
+mysql> select name, headofstate,code from country where headofstate = "elisabeth ii";
+
+13.
+
++----------------------------------------------+------+-----------------------------+
+| name                                         | code | ratio_of_population_to_area |
++----------------------------------------------+------+-----------------------------+
+| Antarctica                                   | ATA  |                      0.0000 |
+| Bouvet Island                                | BVT  |                      0.0000 |
+| South Georgia and the South Sandwich Islands | SGS  |                      0.0000 |
+| British Indian Ocean Territory               | IOT  |                      0.0000 |
+| Heard Island and McDonald Islands            | HMD  |                      0.0000 |
+| United States Minor Outlying Islands         | UMI  |                      0.0000 |
+| French Southern territories                  | ATF  |                      0.0000 |
+| Greenland                                    | GRL  |                      0.0259 |
+| Svalbard and Jan Mayen                       | SJM  |                      0.0513 |
+| Falkland Islands                             | FLK  |                      0.1643 |
++----------------------------------------------+------+-----------------------------+
+10 rows in set (0.01 sec)
+
+mysql> create view ratio( name, code, ratio_of_population_to_area) as select name, code, population/surfacearea as ratio_of_population_to_area from country ;
+
+mysql> select * from ratio limit 10;
+
+14.
+457 rows in set (0.01 sec)
+mysql> select distinct language from countrylanguage ;
+
+
+
+15.
+| name           | gnp        |
++----------------+------------+
+| United States  | 8510700.00 |
+| Japan          | 3787042.00 |
+| Germany        | 2133367.00 |
+| France         | 1424285.00 |
+| United Kingdom | 1378330.00 |
+| Italy          | 1161755.00 |
+| China          |  982268.00 |
+| Brazil         |  776739.00 |
+| Canada         |  598862.00 |
+| Spain          |  553233.00 |
++----------------+------------+
+10 rows in set (0.01 sec)
+mysql> select name, gnp from country order by gnp desc limit 10;
+
+
+16.
+| name               | surfacearea |
++--------------------+-------------+
+| Russian Federation | 17075400.00 |
+| Antarctica         | 13120000.00 |
+| Canada             |  9970610.00 |
+| China              |  9572900.00 |
+| United States      |  9363520.00 |
+| Brazil             |  8547403.00 |
+| Australia          |  7741220.00 |
+| India              |  3287263.00 |
+| Argentina          |  2780400.00 |
+| Kazakstan          |  2724900.00 |
++--------------------+-------------+
+10 rows in set (0.01 sec)
+mysql> select name, surfacearea from country order by surfacearea desc limit 10;
+
+17.
+ CountryCode | Language | IsOfficial | Percentage |
++-------------+----------+------------+------------+
+| FRA         | French   | T          |       93.6 |
++-------------+----------+------------+------------+
+1 row in set (0.00 sec)
+mysql> select * from countrylanguage where language like 'fr%' and percentage>50;
+
+18.
+| name       | lifeexpectancy |
++------------+----------------+
+| Zambia     |           37.2 |
+| Mozambique |           37.5 |
+| Malawi     |           37.6 |
+| Zimbabwe   |           37.8 |
+| Angola     |           38.3 |
++------------+----------------+
+5 rows in set (0.01 sec)
+mysql> select name, lifeexpectancy from country where lifeexpectancy is not null  order by lifeexpectancy asc  limit 5; answer=zambia
+
+
+19.
+
++-------------+----------------------------------------------+
+| amount_used | governmentform                               |
++-------------+----------------------------------------------+
+|           1 | Administrated by the UN                      |
+|           1 | Autonomous Area                              |
+|           1 | Co-administrated                             |
+|           2 | Commonwealth of the US                       |
+|          29 | Constitutional Monarchy                      |
+|           1 | Constitutional Monarchy (Emirate)            |
+|           4 | Constitutional Monarchy, Federation          |
+|           2 | Dependent Territory of Norway                |
+|          12 | Dependent Territory of the UK                |
+|           1 | Dependent Territory of the US                |
+|           1 | Emirate Federation                           |
+|          15 | Federal Republic                             |
+|           1 | Federation                                   |
+|           1 | Independent Church State                     |
+|           1 | Islamic Emirate                              |
+|           2 | Islamic Republic                             |
+|           5 | Monarchy                                     |
+|           1 | Monarchy (Emirate)                           |
+|           2 | Monarchy (Sultanate)                         |
+|           4 | Nonmetropolitan Territory of France          |
+|           3 | Nonmetropolitan Territory of New Zealand     |
+|           2 | Nonmetropolitan Territory of The Netherlands |
+|           1 | Occupied by Marocco                          |
+|           4 | Overseas Department of France                |
+|           1 | Parlementary Monarchy                        |
+|           1 | Parliamentary Coprincipality                 |
+|           2 | Part of Denmark                              |
+|           1 | People'sRepublic                             |
+|         122 | Republic                                     |
+|           3 | Socialistic Republic                         |
+|           1 | Socialistic State                            |
+|           2 | Special Administrative Region of China       |
+|           2 | Territorial Collectivity of France           |
+|           4 | Territory of Australia                       |
+|           3 | US Territory                                 |
++-------------+----------------------------------------------+
+35 rows in set (0.01 sec)
+
+mysql> select count(name) as amount_used, governmentform from country group by governmentform; answer republic
+
+20.
+| count(name) |
++-------------+
+|         192 |
++-------------+
+1 row in set (0.01 sec)
+mysql> select count(name) from country where indepyear is not null;

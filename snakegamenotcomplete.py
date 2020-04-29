@@ -1,6 +1,6 @@
 import random
 import curses
-from curses import textpad
+# from curses import textpad
 
 s = curses.initscr()
 curses.curs_set(0)
